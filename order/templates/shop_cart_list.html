@@ -1,0 +1,111 @@
+{% extends "_homebase.html" %}
+{% load static %}
+{% block title %} Shop Cart List{% endblock %}
+{% block body %}
+
+    <!-- BREADCRUMB -->
+    <div id="breadcrumb">
+        <div class="container">
+            <ul class="breadcrumb">
+                <li><a href="/">Home</a></li>
+                <li class="active">ShopCart</li>
+            </ul>
+        </div>
+    </div>
+    <!-- /BREADCRUMB -->
+
+    <div class="section">
+        <!-- container -->
+        <div class="container">
+            <!-- row -->
+            <div class="row">
+
+                <div class="col-md-2">
+                    <div class="billing-details">
+                        {% include 'user_menu.html' %}
+                    </div>
+                </div>
+
+                <div class="col-md-9">
+                    <div class="shiping-methods">
+
+
+                        {% if messages %}
+                            {% for message in messages %}
+                                <div class="alert alert-{{message.tags}}" role="alert">
+                                    {{ message }}
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+
+                        <div class="order-summary clearfix">
+                            <div class="section-title">
+                                <h3 class="title">Shopcart Items</h3>
+                            </div>
+                            <table class="shopping-cart-table table">
+                                <thead>
+                                <tr>
+                                    <th>Product</th>
+                                    <th></th>
+                                    <th class="text-center">Price</th>
+                                    <th class="text-center">Quantity</th>
+                                    <th class="text-center">Total</th>
+                                    <th class="text-right"></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for rs in shopcart %}
+                                    <tr>
+                                        <td class="thumb"><img src="{{ rs.product.image.url }}" alt=""></td>
+                                        <td class="details">
+                                            <a href="#">{{ rs.product.name }}</a>
+
+                                        </td>
+                                        <td class="price text-center"><strong>$ {{ rs.product.price }}</strong></td>
+                                        <td class="qty text-center"><strong>{{ rs.quantity }}</strong></td>
+                                        <td class="total text-center"><strong class="primary-color">$ {{ rs.amount }}</strong></td>
+                                        <td class="text-right"><a href="/order/deletefromcart/{{ rs.id }}" class="main-btn icon-btn"><i class="fa fa-close"></i></a></td>
+                                    </tr>
+                                {% endfor %}
+
+                                </tbody>
+                                <tfoot>
+                                <tr>
+                                    <th class="empty" colspan="3"></th>
+                                    <th>SUBTOTAL</th>
+                                    <th colspan="2" class="sub-total">${{ carttotal }} </th>
+                                </tr>
+                                <tr>
+                                    <th class="empty" colspan="3"></th>
+                                    <th>SHIPING</th>
+                                    <td colspan="2">Free Shipping</td>
+                                </tr>
+                                <tr>
+                                    <th class="empty" colspan="3"></th>
+                                    <th>TOTAL</th>
+                                    <th colspan="2" class="total">${{ carttotal }} </th>
+                                </tr>
+                                </tfoot>
+                            </table>
+                            <div class="pull-right">
+                                <a href="/order/checkout" class="primary-btn">Check Out </a>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+
+
+                </div>
+
+
+
+
+            </div>
+            <!-- /row -->
+        </div>
+        <!-- /container -->
+    </div>
+
+{% endblock %}

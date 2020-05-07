@@ -1,0 +1,82 @@
+{% extends "_homebase.html" %}
+{% load static %}
+{% block title %} User Profile{% endblock %}
+{% block body %}
+
+    <!-- BREADCRUMB -->
+    <div id="breadcrumb">
+        <div class="container">
+            <ul class="breadcrumb">
+                <li><a href="/">Home</a></li>
+                <li class="active">User Detail</li>
+            </ul>
+        </div>
+    </div>
+    <!-- /BREADCRUMB -->
+
+    <div class="section">
+        <!-- container -->
+        <div class="container">
+            <!-- row -->
+            <div class="row">
+
+                <div class="col-md-2">
+                    <div class="billing-details">
+                        {% include 'user_menu.html' %}
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="billing-details">
+
+                        {% if messages %}
+                            {% for message in messages %}
+                                <div class="alert alert-{{message.tags}}" role="alert">
+                                    {{ message }}
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+
+                        <table>
+                            <form method="post">
+                                {% csrf_token %}
+
+                                {% for field in form %}
+                                    <tr>
+                                        <th>{{ field.label_tag }} </th>
+                                        <td>
+                                            <div class="form-group">
+                                                {{ field }}
+                                                {% if field.help_text %}
+                                                    <small style="color: grey">{{ field.help_text }}</small>
+                                                {% endif %}
+                                                {% for error in field.errors %}
+                                                    <p style="color: red">{{ error }}</p>
+                                                {% endfor %}
+                                            </div>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                                <tr>
+                                    <td></td>
+                                    <td><button  class="primary-btn" type="submit">Update Profile</button></td>
+                                </tr>
+                            </form>
+                        </table>
+
+
+
+                    </div>
+                </div>
+
+
+
+
+
+
+            </div>
+            <!-- /row -->
+        </div>
+        <!-- /container -->
+    </div>
+
+{% endblock %}

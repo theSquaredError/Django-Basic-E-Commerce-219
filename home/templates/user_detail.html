@@ -1,0 +1,83 @@
+{% extends "_homebase.html" %}
+{% load static %}
+{% block title %} User Profile{% endblock %}
+{% block body %}
+
+    <!-- BREADCRUMB -->
+    <div id="breadcrumb">
+        <div class="container">
+            <ul class="breadcrumb">
+                <li><a href="/">Home</a></li>
+                <li class="active">User Detail</li>
+            </ul>
+        </div>
+    </div>
+    <!-- /BREADCRUMB -->
+
+    <div class="section">
+        <!-- container -->
+        <div class="container">
+            <!-- row -->
+            <div class="row">
+
+                <div class="col-md-2">
+                    <div class="billing-details">
+                        {% include 'user_menu.html' %}
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="billing-details">
+
+                        {% if messages %}
+                            {% for message in messages %}
+                                <div class="alert alert-{{message.tags}}" role="alert">
+                                    {{ message }}
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+
+                        <table class="shopping-cart-table table">
+                            <thead>
+                            <tr>
+                                <th>User Name</th>   <td> {{ user.username }}</td>
+                            </tr>
+                            <tr>
+                                <th>First Name</th>   <td>{{ user.first_name }}</td>
+                            </tr>
+
+                            <tr>
+                                <th>Last Name</th>   <td>{{ user.last_name }}</td>
+                            </tr>
+                            <tr>
+                                <th>Address</th>   <td>{{ user.email }}</td>
+                            <tr>
+
+                            <tr>
+                                <th>Date Joined</th>   <td>{{ user.date_joined }}</td>
+                            <tr>
+                            <tr>
+                                <th>Last Login Date</th>   <td>    {{ user.last_login }}      </td>
+                            </tr>
+
+                            <tr>
+                                <th></th><td><a href="/userupdate" class="primary-btn">Change User Data </a> </td>
+                            </tr>
+
+                            </thead>
+
+                        </table>
+                    </div>
+                </div>
+
+
+
+
+
+
+            </div>
+            <!-- /row -->
+        </div>
+        <!-- /container -->
+    </div>
+
+{% endblock %}

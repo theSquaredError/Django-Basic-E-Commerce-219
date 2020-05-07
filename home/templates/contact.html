@@ -1,0 +1,80 @@
+{% extends "_homebase.html" %}
+{% load static %}
+{% block title %}Contact {% endblock %}
+{% block body %}
+
+    <!-- BREADCRUMB -->
+    <div id="breadcrumb">
+        <div class="container">
+            <ul class="breadcrumb">
+                <li><a href="/">Home</a></li>
+                <li class="active">Contact</li>
+            </ul>
+        </div>
+    </div>
+    <!-- /BREADCRUMB -->
+
+    <div class="section">
+        <!-- container -->
+        <div class="container">
+            <!-- row -->
+            <div class="row">
+
+
+
+                <div class="col-md-6">
+                    <div class="billing-details">
+
+                        <div class="section-title">
+                            <h3 class="title">Contact Form</h3>
+
+                        </div>
+
+                        {% if messages %}
+                            {% for message in messages %}
+                                <div class="alert alert-{{message.tags}}" role="alert">
+                                    {{ message }}
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+
+                        <form action="/contact" method="post">
+                            {% csrf_token %}
+                            {{ form.as_p }}
+                            <input type="submit" value="SEND FORM">
+                        </form>
+
+
+                    </div>
+
+                </div>
+
+                <div class="col-md-6">
+                    <div class="shiping-methods">
+                        <div class="section-title">
+                            <h4 class="title">Contact İnformation</h4>
+                        </div>
+
+                        Address:	Karabük Üniversitesi Demir Çelik Kampüsü <br>
+                        Kılavuzlar Köyü Öte Karşı Üniversite Kampüsü Merkez Karabük<br>
+                        Telephone:	444 0 478<br>
+                        E-mail:	info@karabuk.edu.tr<br>
+                        Web	:www.karabuk.edu.tr<br>
+
+                    </div>
+
+
+
+
+                </div>
+
+
+
+
+            </div>
+            <!-- /row -->
+        </div>
+        <!-- /container -->
+    </div>
+
+{% endblock %}

@@ -1,0 +1,34 @@
+  {% load static %}
+<!-- HOME -->
+	<div id="home">
+		<!-- container -->
+		<div class="container">
+			<!-- home wrap -->
+			<div class="home-wrap">
+				<!-- home slick -->
+				<div id="home-slick">
+
+                    {% for rs in sliderlist %}
+
+  					<!-- banner -->
+					<div class="banner banner-1">
+						<img src="{{ rs.image.url }}" alt="">
+						<div class="banner-caption text-center">
+							<h1>{{ rs.name }}</h1>
+							<h3 class="white-color font-weak">{{ rs.price }}</h3>
+							<a href="/product/{{ rs.id }}" class="primary-btn">Satın AL</a>
+						</div>
+					</div>
+					<!-- /banner -->
+                    {% endfor %}
+
+
+
+				</div>
+				<!-- /home slick -->
+			</div>
+			<!-- /home wrap -->
+		</div>
+		<!-- /container -->
+	</div>
+	<!-- /HOME -->
